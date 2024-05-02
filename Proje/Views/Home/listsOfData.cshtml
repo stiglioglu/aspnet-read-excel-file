@@ -1,0 +1,39 @@
+﻿@model List<List<string>>
+@{
+    ViewBag.Title = "listsOfData";
+}
+
+<h2>@ViewBag.nameOfTable</h2>
+
+<form action="/Home/DownloadExcel" method="post">
+    <input type="hidden" name="tableName" value="@ViewBag.nameOfTable" />
+    <button class="btn btn-primary" type="submit">Excel olarak kaydet</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            @for (int i = 1; i < Model[0].Count; i++)
+            {
+                <th scope="col">Column @i</th>
+            }
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i[0]</td>
+                @for (int j = 1; j < i.Count(); j++)
+                {
+                    <td>@i[j]</td>
+                }
+                <td><a href="@Url.Action("updateData", "Home", new { tableName = ViewBag.nameOfTable, index = i[0] })" class="btn btn-warning">Düzenle</a></td>
+                <td><a href="@Url.Action("deleteData", "Home", new { tableName = ViewBag.nameOfTable, index = i[0] })" class="btn btn-danger">Sil</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Content/Home.css" rel="stylesheet" type="text/css" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container center">
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-info" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="white">File Upload</h1>
+            <p class="white">Your Excel file upload in free</p>
+        </div>
+    </div>
+
+    <form action="/Home/Upload" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-3 center">
+                <div class="btn-container">
+                    <h1 class="imgupload"><i class="fa fa-file-image-o"></i></h1>
+                    <h1 class="imgupload ok"><i class="fa fa-check"></i></h1>
+                    <h1 class="imgupload stop"><i class="fa fa-times"></i></h1>
+                    <p id="namefile">Only excel file allowed! (xlsx, xls)</p>
+                    <input class="btn btn-primary btn-lg" type="file" name="file" accept=".xlsx, .xls">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary" id="fakebtn"><i class="fas fa-paper-plane"></i> Submit</button>
+            </div>
+        </div>
+    </form>
+
+
+
+</div>
+
+<script src="~/Scripts/Home.js"></script>

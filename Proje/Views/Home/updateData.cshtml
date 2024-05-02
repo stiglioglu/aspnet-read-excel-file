@@ -1,0 +1,21 @@
+﻿@model List<string>
+@{
+    ViewBag.Title = "updateData";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+
+<form action="/Home/updateData" method="post">
+    @for (int i = 1; i < Model.Count(); i++)
+    {
+        <div class="form-group">
+            <input type="text" class="form-control" name="data" value="@Model[i]">
+        </div>
+        <br />
+        <input type="hidden" name="tableName" value="@ViewBag.tableName"/>
+        <input type="hidden" name="index" value="@ViewBag.index"/>
+    }
+    <button type="submit" class="btn btn-primary">Gönder</button>
+</form>
